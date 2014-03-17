@@ -1,0 +1,161 @@
+// Open TaskPaper 3 Dev (it has a red icon, hard not to spot)
+// File > Open Application Folder. Drop this file there.
+// You're set. This theme is not working properly until the next build due to the lack of labels.
+
+@textColor: #383838;
+@font: "Proxima Nova", Helvetica, sans-serif;
+@commentFont: "Proxima Nova Light", "Helvetica", sans-serif;
+@paperColor: #F6F6F6;
+@deskColor: #DBDBDB;
+
+@commentColor: #858585;
+@doneColor: @commentColor;
+@caretColor: #FF4D7C;
+@selectionColor: rgba(255, 232, 77, 0.5);
+@nextColor: #4DBCFF;
+@somedayColor: #ABAB63;
+@tagColor: @commentColor;
+@overdueColor: #FF604D;
+@todayColor: #36B841;
+@priorityColor: #FF9B4D;
+
+
+.CodeMirror {
+	.cm-comment {
+		color: @commentColor;
+		font-family: "Proxima Nova Light", "Helvetica", sans-serif;
+		font-size: 0.85rem;
+		padding-left: 0.9rem;
+	}
+	.cm-tag {
+		font-style: italic;
+		font-weight: 300;
+	}
+	pre[cm-someday] .cm-text {
+		color: @somedayColor;
+	}
+	pre[cm-someday] .CodeMirror-widget:after {
+		content: "";
+		margin-right: 0;
+	}
+	pre[cm-today] .cm-text {
+		color: @todayColor;
+	}
+	pre[cm-today] .CodeMirror-widget:after {
+		content: "";
+		margin-right: 0;
+	}
+	pre[cm-high] .cm-text {
+		color: @priorityColor;
+	}
+	pre[cm-high] .CodeMirror-widget:after {
+		content: "!";
+		color: @priorityColor;
+		margin-right: 0.25rem;
+	}
+	pre[cm-next] .cm-text {
+		color: @nextColor;
+	}
+	pre[cm-next]::before {
+		content: "";
+		margin-right: 0;
+	}
+	pre[cm-overdue] .cm-text {
+		color: @overdueColor !important;
+	}
+	pre[cm-overdue] .CodeMirror-widget:after {
+		content: "!!"; 
+		color: @overdueColor;
+		margin-right: 0.25rem;
+	}
+	pre[cm-done] .cm-text {
+		color: @doneColor;
+		font-weight: normal;
+	}
+	pre[cm-done] .CodeMirror-widget:after {
+		content: "";
+		margin-right: 0;
+	}
+	div.CodeMirror-cursor {
+		border-left: 2px solid @caretColor;
+	}
+}
+
+pre.cm-task {
+	padding-right: 1rem;
+	.cm-text {
+		box-decoration-break: clone;
+		-webkit-box-decoration-break: clone;
+	}
+}
+
+.CodeMirror-widget {
+	box-decoration-break: clone;
+	-webkit-box-decoration-break: clone;
+}
+
+.cm-checkbox-renderwidget {
+	position: relative;
+	vertical-align: middle;
+	top: -0.175rem;
+	height: 20.14400005340576px;
+	box-sizing: border-box;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	border-radius: 100%;
+	background-color: @textColor;
+	margin-right: 0.75rem;
+}
+.cm-checkbox-renderwidget > input[type=checkbox] {
+	cursor: pointer;
+	opacity: 0;
+	width: 20px;
+	height: 20px;
+	left: 0.24rem;
+	z-index: 1;
+}
+.cm-checkbox-renderwidget label {
+	cursor: pointer;
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	top: 2px;
+	left: 2px;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	border-radius: 100%;
+	background-color: @paperColor;
+}
+.cm-checkbox-renderwidget label::after {
+	content: "";
+	cursor: pointer;
+	opacity: 0;
+	background-color: @nextColor;
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	top: 2px;
+	left: 2px;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	border-radius: 100%;
+}
+
+.cm-checkbox-renderwidget > input[type=checkbox]:hover ~ label::after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+	opacity: 0.5;
+}
+
+input[type="checkbox"]:checked ~ label::after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+	opacity: 1;
+}
+
+.cm-checkbox-renderwidget > input[type=checkbox]:checked:hover ~ label::after {
+	background-color: @overdueColor;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+	opacity: 0.5;
+}
