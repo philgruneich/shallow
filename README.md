@@ -1,4 +1,4 @@
-shallow
+Shallow
 =======
 
-A working theme for TaskPaper 3
+A working theme for TaskPaper 3 (in development)
