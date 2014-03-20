@@ -21,6 +21,10 @@
 
 
 .CodeMirror {
+	.CodeMirror-widget {
+		box-decoration-break: clone;
+		-webkit-box-decoration-break: clone;
+	}
 	.cm-comment {
 		color: @commentColor;
 		font-family: "Proxima Nova Light", "Helvetica", sans-serif;
@@ -79,19 +83,13 @@
 	div.CodeMirror-cursor {
 		border-left: 2px solid @caretColor;
 	}
-}
-
-pre.cm-task {
-	padding-right: 1rem;
-	.cm-text {
-		box-decoration-break: clone;
-		-webkit-box-decoration-break: clone;
+	pre.cm-task {
+		padding-right: 1rem;
+		.cm-text {
+			box-decoration-break: clone;
+			-webkit-box-decoration-break: clone;
+		}
 	}
-}
-
-.CodeMirror-widget {
-	box-decoration-break: clone;
-	-webkit-box-decoration-break: clone;
 }
 
 .cm-checkbox-renderwidget {
@@ -105,57 +103,54 @@ pre.cm-task {
 	border-radius: 100%;
 	background-color: @textColor;
 	margin-right: 0.75rem;
-}
-.cm-checkbox-renderwidget > input[type=checkbox] {
-	cursor: pointer;
-	opacity: 0;
-	width: 20px;
-	height: 20px;
-	left: 0.24rem;
-	z-index: 1;
-}
-.cm-checkbox-renderwidget label {
-	cursor: pointer;
-	position: absolute;
-	width: 16px;
-	height: 16px;
-	top: 2px;
-	left: 2px;
-	-webkit-border-radius: 100%;
-	-moz-border-radius: 100%;
-	border-radius: 100%;
-	background-color: @paperColor;
-}
-.cm-checkbox-renderwidget label::after {
-	content: "";
-	cursor: pointer;
-	opacity: 0;
-	background-color: @nextColor;
-	position: absolute;
-	width: 12px;
-	height: 12px;
-	top: 2px;
-	left: 2px;
-	-webkit-border-radius: 100%;
-	-moz-border-radius: 100%;
-	border-radius: 100%;
-}
-
-.cm-checkbox-renderwidget > input[type=checkbox]:hover ~ label::after {
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
-	opacity: 0.5;
-}
-
-input[type="checkbox"]:checked ~ label::after {
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-	opacity: 1;
-}
-
-.cm-checkbox-renderwidget > input[type=checkbox]:checked:hover ~ label::after {
-	background-color: @overdueColor;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
-	opacity: 0.5;
+	& > input[type=checkbox] {
+		cursor: pointer;
+		opacity: 0;
+		width: 20px;
+		height: 20px;
+		left: 0.24rem;
+		z-index: 1;
+		&:hover ~ label:after {
+			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+			filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+			opacity: 0.5;
+		}
+		&:checked ~ label:after {
+			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+			filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+			opacity: 1;
+		}
+		&:checked:hover ~ label:after {
+			background-color: @overdueColor;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+			filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+			opacity: 0.5;
+		}
+	}
+	label {
+		cursor: pointer;
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		top: 2px;
+		left: 2px;
+		-webkit-border-radius: 100%;
+		-moz-border-radius: 100%;
+		border-radius: 100%;
+		background-color: @paperColor;
+		&:after {
+			content: "";
+			cursor: pointer;
+			opacity: 0;
+			background-color: @nextColor;
+			position: absolute;
+			width: 12px;
+			height: 12px;
+			top: 2px;
+			left: 2px;
+			-webkit-border-radius: 100%;
+			-moz-border-radius: 100%;
+			border-radius: 100%;
+		}
+	}
 }
