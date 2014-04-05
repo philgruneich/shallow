@@ -20,18 +20,15 @@
 @priorityColor: #FF9B4D;
 
 span.cm-checkbox-renderwidget {
+	// Generates the black circle on our checkboxes
 	position: relative;
 	vertical-align: middle;
 	top: -0.175rem;
-//	width: 20px;
-//	height: 20px;
 	box-sizing: border-box;
 	border-radius: 100%;
 	background-color: @textColor;
 	margin-right: 0.75rem;
-//	padding: 0;
-	padding: 2px 1px 1px 0;
-//	padding: 2px 3px 1px 2px;
+	padding: 2px 1px 1px 0; // This padding is a hack. Be careful.
 	& > input[type=checkbox] {
 		cursor: pointer;
 		padding: 0;
@@ -41,7 +38,7 @@ span.cm-checkbox-renderwidget {
 		height: 20px;
 		left: 2px;
 		top: 5px;
-		z-index: 2;
+		z-index: 2; // It is important that the checkbox stands above the label.
 		position: relative;
 		&:hover ~ label:after {
 			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
@@ -62,6 +59,7 @@ span.cm-checkbox-renderwidget {
 		}
 	}
 	label {
+		// The label is nothing but the white circle.
 		cursor: pointer;
 		position: absolute;
 		width: 15px;
@@ -74,6 +72,7 @@ span.cm-checkbox-renderwidget {
 		background-color: @paperColor;
 		z-index: 1;
 		&:after {
+			// This generates all our hover effects in colors.
 			content: "";
 			cursor: pointer;
 			opacity: 0;
@@ -101,9 +100,6 @@ span.cm-checkbox-renderwidget {
 	.CodeMirror-widget {
 		box-decoration-break: clone;
 		-webkit-box-decoration-break: clone;
-		height: 100%;
-		max-height: 100%;
-		overflow: hidden;
 	}
 	.cm-note {
 		color: @commentColor;
@@ -137,29 +133,24 @@ span.cm-checkbox-renderwidget {
 		background-color: @overdueColor;
 	}
 	pre[cm-done] .cm-text {
-		color: @doneColor !important;
+		color: @doneColor !important; // Overrides any styling if task is done.
 		font-weight: normal;
 	}
 	pre[cm-done] span.cm-checkbox-renderwidget {
-		background-color: @doneColor !important;
-	}
-	div.CodeMirror-cursors {
-		z-index: 8;
+		background-color: @doneColor !important; // Overrides any styling if task is done.
 	}
 	div.CodeMirror-cursor {
-		padding-top: 6px;
+		padding-top: 6px; // Adjusts the cursor.
 		border-left: 2px solid @caretColor;
 	}
 	pre.cm-task {
 		padding-right: 1rem;
-		box-decoration-break: clone;
-		-webkit-box-decoration-break: clone;
 		.cm-text {
 			box-decoration-break: clone;
 			-webkit-box-decoration-break: clone;
 		}
 	}
 	.cm-project-wrapper:nth-of-type(1n+2) pre[cm-level="0"] {
-		border-top: 1px solid lighten(@commentColor, 30%);
+		border-top: 1px solid lighten(@commentColor, 30%); // Creates the border dividing top projects.
 	}
 }
